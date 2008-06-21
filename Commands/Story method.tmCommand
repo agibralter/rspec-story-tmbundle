@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+#if ENV['TM_CURRENT_LINE'] =~ /(.*)(Given|When|Then|And)(.*)/
+#  print %Q(#{$1}#{$2}("#{$3.strip}"))
+#end
+
+last_type = nil
+
+text = ENV['TM_SELECTED_TEXT']
+output = ""
+
+begin
+	text.split(/\n/).each do |line|
+		if line =~ /(.*)(Given|When|Then|And)(.*)/
+			case $2
+				when "And"
+					raise if last_type == nil
+				else
+					last_type = $2
+			end
+
+			output &lt;&lt; %Q(#{$1}#{last_type}("#{$3.strip}") do\n)
+			output &lt;&lt; "#{$1}\tpending\n"
+			output &lt;&lt; "#{$1}end\n\n"
+		end
+	end
+
+	print output
+rescue
+	print text
+end</string>
+	<key>fallbackInput</key>
+	<string>none</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^~@g</string>
+	<key>name</key>
+	<string>Story method</string>
+	<key>output</key>
+	<string>replaceSelectedText</string>
+	<key>scope</key>
+	<string>source.ruby</string>
+	<key>uuid</key>
+	<string>DD7D6D30-3495-4375-8F0B-B179AC3DD1ED</string>
+</dict>
+</plist>
