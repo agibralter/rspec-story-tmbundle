@@ -7,8 +7,9 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 
-require ENV['TM_BUNDLE_SUPPORT'] + "/lib/spec/mate"
-Spec::Mate::Story::Runner.new.run_file
+require ENV['TM_BUNDLE_SUPPORT'] + "/lib/spec/mate/story/story_helper"
+Spec::Mate::Story::StoryHelper.new(ENV['TM_FILEPATH']).run_story
+
 </string>
 	<key>fallbackInput</key>
 	<string>document</string>
@@ -21,7 +22,7 @@ Spec::Mate::Story::Runner.new.run_file
 	<key>output</key>
 	<string>showAsHTML</string>
 	<key>scope</key>
-	<string>text.rspec.story</string>
+	<string>text.rspec.story, source.ruby.rspec.story</string>
 	<key>uuid</key>
 	<string>1530D367-DCDF-4F89-8BDB-896FAA16830E</string>
 </dict>

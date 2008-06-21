@@ -1,17 +1,10 @@
-# dir = File.dirname(__FILE__)
-# $LOAD_PATH.unshift "#{dir}/rspec/lib" 
 require 'rubygems'
 require 'spec'
-require 'spec/story'
-require 'stringio'
+
+ENV['TM_SUPPORT_PATH'] = '/Applications/TextMate.app/Contents/SharedSupport/Support'
 
 module Spec::Example::ExampleMethods
-  def set_env
-    root = File.expand_path(File.dirname(__FILE__) + '/../../../example_rails_app/vendor/plugins/rspec')
-    ENV['TM_SPEC'] = "ruby -I\"#{root}/lib\" \"#{root}/bin/spec\""
-    ENV['TM_RSPEC_HOME'] = "#{root}"
-    ENV['TM_PROJECT_DIRECTORY'] = File.expand_path(File.dirname(__FILE__))
-    ENV['TM_FILEPATH'] = nil
-    ENV['TM_LINE_NUMBER'] = nil
+  def project_root
+    @project_root ||= File.expand_path(File.join(File.dirname(__FILE__), '../fixtures'))
   end
 end

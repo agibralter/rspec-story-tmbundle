@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+require ENV['TM_BUNDLE_SUPPORT'] + "/lib/spec/mate/story/story_helper"
+Spec::Mate::Story::StoryHelper.new(ENV['TM_FILEPATH']).create_all_undefined_steps</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>^~$@</string>
+	<key>name</key>
+	<string>Create All Undefined Steps</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>scope</key>
+	<string>text.rspec.story, source.ruby.rspec.story</string>
+	<key>uuid</key>
+	<string>A165BB7A-E047-499B-8DF2-CA1FC9049298</string>
+</dict>
+</plist>
